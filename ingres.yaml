@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: ip172-18-0-137-ctcqofgi7hog008qp4qg.direct.labs.play-with-k8s.com
+    http:
+      paths:
+      - path: /
+        backend:
+          service:
+            name: nginx-loadbalancer-service
+            port:
+              number: 8080
+              name: http
